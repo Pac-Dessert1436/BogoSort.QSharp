@@ -4,7 +4,7 @@ namespace BogoSort {
     import Std.Math.BitSizeI;
 
     operation RandomBit() : Result {
-        use q = Qubit();
+        use q : Qubit = Qubit();
         H(q);
         let result = M(q);
         Reset(q);
@@ -12,7 +12,7 @@ namespace BogoSort {
     }
 
     operation Shuffle<'T>(array : 'T[]) : 'T[] {
-        mutable array = array;
+        mutable array : 'T[] = array;
         for i in 0..(Length(array) - 1) {
             let k = RandomInt(0, Length(array) - 1);
             let temp = array[k];
@@ -23,8 +23,8 @@ namespace BogoSort {
     }
 
     operation RandomInt(min : Int, max : Int) : Int {
-        mutable bits = [];
-        let nBits = BitSizeI(max);
+        mutable bits : Result[] = [];
+        let nBits : Int = BitSizeI(max);
         for idxBit in 1..nBits {
             set bits += [RandomBit()];
         }
@@ -33,8 +33,8 @@ namespace BogoSort {
     }
 
     operation PerformBogoSort(array : Int[]) : Int {
-        mutable array = array;
-        mutable times = 0;
+        mutable array : Int[] = array;
+        mutable times : Int = 0;
         while not IsSorted((a, b) -> a < b, array) {
             set array = Shuffle(array);
             set times += 1;
