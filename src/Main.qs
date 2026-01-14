@@ -13,6 +13,7 @@ namespace Main {
         return Shuffle(MakeReverseArray(length));
     }
 
+    @EntryPoint()
     operation Main() : Unit {
         let count = 8;
         let revArr = MakeReverseArray(count);
@@ -22,4 +23,5 @@ namespace Main {
         let res2 = PerformBogoSort(randArr);
         Message($"Random Array: {randArr} (Took {res2} times to sort)");
     }
+
 }
